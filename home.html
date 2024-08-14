@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="open-btn" onclick="openSidebar()">☰</button>
+        <div class="logo">ICU zambia</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="SINGIN.HTML">singup</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="singup.html">Sign In</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" placeholder="Search..." id="search-bar">
+            <button onclick="search()">Search</button>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <a href="#">Link 4</a>
+    </div>
+
+    <div class="main-content" id="main-content">
+<!--
+        <h1>ICU ZAMBIA</h1>
+        <p>This is the home page content.</p>
+-->
+        
+        <div class="news-tab">
+            <div class="news">
+            
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

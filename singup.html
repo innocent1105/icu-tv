@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="open-btn" onclick="openSidebar()">☰</button>
+        <div class="logo">ICU ZAMBIA</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="SINGIN.HTML">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="sign-in.html">Sign In</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" placeholder="Search..." id="search-bar">
+            <button onclick="search()">Search</button>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+        <a href="#">Link 4</a>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <div class="sign-in-container">
+            <h2>Sign In</h2>
+            <form action="submit-signin" method="post" onsubmit="return validateSignInForm()">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            <p><a href="index.html">Back to Home</a></p>
+        </div>
+    </div>
+</body>
