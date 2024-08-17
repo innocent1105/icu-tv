@@ -6,12 +6,6 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 
-	$user_data = check_login($con);
-	$user_id = $user_data['user_id'];
-    $user_name = $user_data['firstname'];
-
-	$profile_pic = $user_data['pp'];
-
 	if(!isset($_GET['id'])){
 		header("Location: ./index.php");
 	}
@@ -39,6 +33,7 @@ session_start();
     // var_dump($result->fetch_assoc());
 	if($result -> num_rows > 0){
             $result = mysqli_fetch_assoc($result);
+            
 			$title = $result['title'];
 			$content = $result['content'];
 			$video = $result['video'];
@@ -58,23 +53,6 @@ session_start();
 					// echo $author_name;
 				}
 			}
-            // check if viewed
-            $sql = "select * from views where user_id='$user_id' and news_id='$news_id'";
-            $res = mysqli_query($con, $sql);
-            if($res -> num_rows > 0){
-                while($row = $res->fetch_assoc()){
-                    // echo "viewed";
-                    
-                }
-            }else{
-                $qry = "insert into views(user_id,news_id,date) values('$user_id','$news_id',null)";
-                $result = mysqli_query($con, $qry);
-                if($result){
-                    // echo "just viewed";
-                }else{
-                    // echo "not viewed";
-                }
-            }
 
             $views = 0;
             //count views
@@ -128,56 +106,6 @@ session_start();
                         <p><?php echo $author_name ?></p>
                         <!-- <span>19.4K subscribers</span> -->
                     </div>
-                <?php 
-                    if($user_id != $author_user_id){
-
-                ?>
-               
-                    <button type="button" id="follow-btn">
-                    <?php
-                         $qry = "select * from follow where user_id='$user_id' and other_user_id='$author_user_id' or user_id='$author_user_id' and other_user_id='$user_id'"; 
-                         $res = mysqli_query($con, $qry);
-                         if($res->num_rows > 0){
-                            echo "Following";
-                         }else{
-                            echo "Follow";
-                         }
-                    ?>
-                    </button>
-
-                    <?php
-                    }
-
-                ?>
-                    <script>
-                        let follow = document.getElementById("follow-btn");
-                            follow.addEventListener("click", ()=>{
-                                
-                                $.ajax({
-                                    type: "POST",
-                                    url: "./system_arch/follow.php",
-                                    data:{
-                                        user_id: <?php echo $user_id ?>,
-                                        author_id: <?php echo $author_user_id ?>
-                                    },
-                                    cache: false,
-                                    success: function(data){
-                                        console.log(data)
-                                        
-                                        if(data == 1){
-                                            console.error("followed");
-                                            follow.innerHTML = "Following";
-                                        }else{
-                                            follow.innerHTML = "Follow";
-                                            console.error("unfollowed");
-                                        }
-                                    },
-                                    error: function (err){
-                                        console.log(err)
-                                    }
-                                })
-                            })
-                    </script>
                 </div>
 
                 <div class="vid-des">
@@ -211,7 +139,7 @@ session_start();
             </div>
             <div class="right-sidebar">
                 <?php
-					require("./system_arch/sidebar-posts.php");
+					require("./system_arch/side-bar-posts2.php");
 				?>
             </div>
         </div>

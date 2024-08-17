@@ -1,7 +1,7 @@
-<div class="news-tab">
+<div class="list-container">
              <?php
-                    $qry = "select * from news";
-
+                    $qry = "select * from news order by RAND() limit 8";
+ 
                     $result = mysqli_query($con, $qry);
                     if($result -> num_rows > 0){
                         while($row = $result->fetch_assoc()){
@@ -12,23 +12,21 @@
                             $image = $row['image'];
                             $date = $row['date'];
                 ?>
-            <a href="./watch_news.php?id=<?php echo $news_id; ?>">
-                <div class="news">
-                    
-                    <div class="img-area">
-                        <img src="./files/images/<?php echo $image ?>" alt="<?php echo $image ?>">
-                    </div>
-                    <div class="title-area">
-                        <?php echo $title; ?> weihfeiuw kjbwkjebhwe wjebdkuwekh wiebdiuwebdkjw edibweiudbwe
-                    </div>
-                    <div class="date-area">
-                        <?php echo $date ?>
-                    </div>
-                    <div class="read-btn">
-                        Watch now
-                    </div>
-                </div>
-            </a>
+         
+         <div class="vid-list">
+           <a href="./watch_news.php?id=<?php echo $news_id?>"> <img src="./files/images/<?php echo $image ?>" class="thumbnail" ></a>
+           <div class="flex-div">
+               <div class="vid-info">
+                   <a href="./watch_news.php?id=<?php echo $news_id?>"><?php echo $title ?></a>
+                   <p><?php $content = substr($content, 0, 100);
+                            echo $content;
+						?></p>
+                   <p> &bull; <?php echo $date ?></p>
+               </div>
+           </div>
+       </div>
+
+
 
                 <?php
                         }

@@ -1,49 +1,163 @@
+<?php 
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+	$user_data = check_login($con);
+	$user_id = $user_data['user_id'];
+    $user_name = $user_data['firstname'];
+
+	$profile_pic = $user_data['pp'];
+  
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <title>ICU TV || HOME</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple-icons/siimple-icons.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <button class="open-btn" onclick="openSidebar()">☰</button>
-        <div class="logo">ICU zambia</div>
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="SINGIN.HTML">singup</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="singup.html">Sign In</a></li>
-        </ul>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." id="search-bar">
-            <button onclick="search()">Search</button>
+    
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img src="./images/menu.png" class="menu-icon" alt="" srcset="">
+            <img src="./images/logo.png" class="logo" width="20px" alt="" srcset="">
+        </div>
+        <div class="nav-middle flex-div">
+           <div class="search-box flex-div">
+               <input type="text" placeholder="Search..">
+               <img src="./images/search.png" alt="" srcset="">
+           </div>
+           <!-- <img src="./images/voice-search.png" class="mic-icon" alt="" srcset=""> -->
+        </div>
+        <div class="nav-right flex-div">
+            <!-- <img src="./images/upload.png" alt="" srcset=""> -->
+            <a href="#"><i class="si-video"></i> Post</a>
+            <a href="#"><i class="si-bell"></i>Notifications</a>
+            <img src="./images/Jack.png" class="user-icon" alt="" srcset="">
         </div>
     </nav>
 
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="closeSidebar()">×</button>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
+    <!-- Side Bar -->
+
+     <div class="sidebar">
+         <div class="shortcut-links">
+             <a href="#" class="active-tab"><i class="si-home"></i><p>Home</p></a>
+             <a href="#"><i class="si-bolt"></i><p>Trending</p></a>
+             <a href="#"><i class="si-location"></i><p>Latest news</p></a>
+             <a href="#"><i class="si-tv"></i><p>Watch</p></a>
+             <!-- <a href="#"><img src="./images/subscriprion.png"><p>subscriprion</p></a> -->
+             <hr>
+             <a href="#"><i class="si-lightbulb"></i><p>Innovation</p></a>
+             <a href="#"><i class="si-postcard"></i><p>Governance</p></a>
+             <a href="#"><i class="si-trophy"></i><p>Sports</p></a>
+             <hr>
+             <a href="#"><i class="si-user-circle"></i><p>Profile</p></a>
+             <hr>
+            </div>
+          <div class="subscribed-list">
+              <h3>Recently Opened</h3>
+              <a href="#"><img src="./images/Jack.png"><p>Jack   &bull;</p></a>
+              <a href="#"><img src="./images/simon.png"><p>simon </p></a>
+              <a href="#"><img src="./images/tom.png"><p>Tom  &bull;</p></a>
+              <a href="#"><img src="./images/megan.png"><p>Megan Fox  &bull;</p></a>
+              <a href="#"><img src="./images/cameron.png"><p>Cameron Green </p></a>
+            
+            </div>
+            <hr>
+        </div>
+
+<!-- Main Body -->
+<div class="container">
+    <div class="banner">
+        <img src="./images/banner.png" alt="" srcset="">
     </div>
 
-    <div class="main-content" id="main-content">
-<!--
-        <h1>ICU ZAMBIA</h1>
-        <p>This is the home page content.</p>
--->
-        
-        <div class="news-tab">
-            <div class="news">
-            
+
+    <div class="first-tab">
+        <div class="main-text">ICU TV</div>
+        <div class="mini-text">Get the latest updates, Innovations and discussions.</div>
+        <br>
+        <div class="mini-text">Latest | Local | International</div>
+    </div>
+
+
+<br><br>
+<div class="tab-description">Latest News</div>
+    <div class="list-container">
+
+        <?php
+            require("./system_arch/latest_news.php");
+        ?>
+
+
+
+       <!-- <div class="vid-list">
+           <a href="video-1.html"> <img src="./images/thumbnail1.png" class="thumbnail" ></a>
+           <div class="flex-div">
+               <img src="./images/nilava.jpeg">
+               <div class="vid-info">
+                   <a href="video-1.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, nobis?</a>
+                   <p>Avalin</p>
+                   <p>2k Views &bull; 2 days</p>
+               </div>
+           </div>
+       </div>
+     
+       <div class="vid-list">
+        <a href="video-2.html"> <img src="./images/thumbnail2.png" class="thumbnail" ></a>
+        <div class="flex-div">
+            <img src="./images/nilava.jpeg">
+            <div class="vid-info">
+                <a href="video-2.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, nobis?</a>
+                <p>Ava</p>
+                <p>2k Views &bull; 2 days</p>
             </div>
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    
+    <div class="vid-list">
+        <a href="#"> <img src="./images/thumbnail19.png" class="thumbnail" ></a>
+        <div class="flex-div">
+            <img src="./images/nilava.jpeg">
+            <div class="vid-info">
+                <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, nobis?</a>
+                <p>Avalin</p>
+                <p>2k Views &bull; 2 days</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="vid-list">
+        <a href="#"> <img src="./images/thumbnail20.png" class="thumbnail" ></a>
+        <div class="flex-div">
+            <img src="./images/nilava.jpeg">
+            <div class="vid-info">
+                <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, nobis?</a>
+                <p>Avalin</p>
+                <p>2k Views &bull; 2 days</p>
+            </div>
+        </div>
+    </div>
+ -->
+
+    </div>
+
+
+
+</div>
+
+
+<script src="side-bar.js"></script>
+
+
 </body>
 </html>

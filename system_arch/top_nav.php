@@ -1,22 +1,40 @@
-<nav class="navbar">
-       <button class="open-btn" onclick="openSidebar()">☰</button>
-        <div class="logo">ICU ZAMBIA</div>
-        <ul class="nav-links">
-            <li><a href="./index.php">Home</a></li>
-            <li><a href="#">Top news</a></li>
-            <li><a href="#">Media Team</a></li>
-            <!-- <li><a href="#"></a></li> -->
-
-            <?php   
-                if(!isset($_COOKIE['ICU_acc'])){
+<nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img src="./images/menu.png" class="menu-icon" alt="" srcset="">
+            <img src="./images/logo.png" class="logo" width="20px" alt="" srcset="">
+        </div>
+        <div class="nav-middle flex-div">
+           <div class="search-box flex-div">
+               <input type="text" placeholder="Search..">
+               <img src="./images/search.png" alt="" srcset="">
+           </div>
+           <!-- <img src="./images/voice-search.png" class="mic-icon" alt="" srcset=""> -->
+        </div>
+        <div class="nav-right flex-div">
+           <?php 
+                if(isset($_COOKIE['ICU_acc'])){
             ?>
-            <li><a href="./signup.php">Sign In</a></li>
+            <?php
+                if($user_data['user_type'] == "admin"){
+            ?>
+             <a href="./article.php"><i class="si-video"></i> Post</a>
             <?php
                 }
+
             ?>
-        </ul>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." id="search-bar">
-            <button onclick="search()">Search</button>
+
+            <a href="#"><i class="si-bell"></i>Notifications</a>
+            <img src="./profile_pictures/<?php echo $user_data['pp'] ?>" class="user-icon" alt="" srcset="">
+
+
+            <?php
+                }else{
+            ?>
+             <a href="./signup.php"><i class="si-video"></i> Signup</a>
+            <a href="./login.php"><i class="si-bell"></i>Login</a>
+            <?php 
+                }
+            ?>
+        
         </div>
     </nav>

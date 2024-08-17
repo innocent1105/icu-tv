@@ -8,13 +8,16 @@
 
     $title = strip_tags($_POST['title']);
     $content = strip_tags($_POST['content']);
+    $category = strip_tags($_POST['category']);
+    $url= strip_tags($_POST['link']);
+    $tag = strip_tags($_POST['tag']);
     $user_id = $_COOKIE['ICU_acc'];
     
     $image_name = "";
     $video_name = "";
 
-
-
+    $isset_video = false;
+    $issset_img = false;
 
 
     if(isset($_FILES['video']['name']) AND !empty($_FILES['video']['name'])){
@@ -37,7 +40,7 @@
                }else{
                 $video_name = $filename;
                 echo "uploaded";
-
+                $isset_video = true;
                 
                }
             }
@@ -73,7 +76,7 @@
                }else{
                 $image_name = $filename;
                 echo "uploaded";
- 
+                $issset_img = true;
                }
             }
         }else{
@@ -87,16 +90,21 @@
 
     // database update
 
-    $qry = "insert into news (id, user_id, title, content, tag, mention, url, video, image, date) values ('null', '$user_id', '$title', '$content', 'no tag', 'no mentions', 'no url', '$video_name', '$image_name', 'null')";     
-    $result = mysqli_query($con, $qry);
+    if($isset_video && $issset_img){
+            $qry = "insert into news (id, user_id, title, content, tag, mention, url, video, image, date) values ('null', '$user_id', '$title', '$content', '$tag', '$category', '$url', '$video_name', '$image_name', null)";     
+            $result = mysqli_query($con, $qry);
 
-    if($result){
-        $msg = "Posted successful.";
-        echo "<br>successfull";
-        header("Location: ../index.php?" . $msg);
+        if($result){
+            $msg = "Posted successful.";
+            echo "<br>successfull";
+            header("Location: ../index.php?" . $msg);
+        }else{
+            echo "error - did not upload";
+            $msg = "error - did not upload.";
+            header("Location: ../system_arch/news_post.php?" . $msg);
+        }
     }else{
-        echo "error - did not upload";
-        $msg = "error - did not upload.";
-        header("Location: ../system_arch/news_post.php?" . $msg);
+        echo "No video or image uploaded";
     }
+    
 ?>

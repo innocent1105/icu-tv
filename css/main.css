@@ -514,7 +514,7 @@ nav{
 
 
 /* Responsive layout - makes a two column-layout instead of four columns */
-@media (max-width: 1080px) {
+@media (max-width: 950px) {
   .column {
     flex: 50%;
     max-width: 46%;

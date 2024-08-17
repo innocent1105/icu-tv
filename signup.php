@@ -12,7 +12,6 @@
 
 <body>
 <?php
-	require "./system_arch/top_nav.php"; 
 	require "./system_arch/signin_component.php";
 ?>
 

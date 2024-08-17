@@ -13,11 +13,11 @@ function check_login($con)
 			$user_data = mysqli_fetch_assoc($result);
 			$_SESSION['user_id'] = $user_data['user_id'];
 			return $user_data;
-			}
+		}
 	}
 
-	//redirect to login
-	header("Location: login.php");
+	// redirect to login
+	header("Location: wall.php");
 	die;
 
 }

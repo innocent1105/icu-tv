@@ -7,9 +7,6 @@ session_start();
 	$user_data = check_login($con);
 	$user_id = $user_data['user_id'];
     $user_name = $user_data['firstname'];
-
-    
-  
 ?>
 
 
@@ -19,7 +16,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php require("./header.php"); ?>
 </head>
 <body>
   <?php 
@@ -28,18 +25,13 @@ session_start();
 ?>
 
    
-    <div class="main-content" id="main-content">
+    <div class="container" id="main-content">
         <div class="main-tab">
          
         <!-- Post Form -->
        <?php
             require "./system_arch/news_post.php";
         ?>
-
-        <div class="left-tab">
-            <?php require "./system_arch/profile.php"; ?>
-            
-        </div>
         </div>
       
     

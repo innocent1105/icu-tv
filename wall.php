@@ -2,14 +2,8 @@
 session_start();
 
 	include("connection.php");
-	include("functions.php");
+	include("functions.php");   
 
-	$user_data = check_login($con);
-	$user_id = $user_data['user_id'];
-    $user_name = $user_data['firstname'];
-
-	$profile_pic = $user_data['pp'];
-  
 ?>
 
 
@@ -26,35 +20,37 @@ session_start();
     ?>
 
     <!-- Side Bar -->
+
+<?php
+    require("./system_arch/tab1.php");
+?>
+
 <!-- Main Body -->
 <div class="container">
-    <div class="banner">
-        <img src="./images/banner.png" alt="" srcset="">
-    </div>
-
 
     <div class="first-tab">
+        <div class="left-tab-btns">
+            <a href="./signup.php"><button>Sign up</button></a>
+            <a href="./login.php"><button class="login-btn">Login</button></a>
+        </div>
+
         <div class="main-text">ICU TV</div>
         <div class="mini-text">Get the latest updates, Innovations and discussions.</div>
         <br>
         <div class="mini-text">Latest | Local | International</div>
+
+      
     </div>
 
 <br><br>
 <div class="tab-description">Latest News</div>
     <div class="list-container">
         <?php
-            require("./system_arch/latest_news.php");
-        ?>
-    </div>
-    <br>
-<div class="tab-description">All stories</div>
-    <div class="list-container">
-        <?php
-            require("./system_arch/news.php");
+            require("./system_arch/wall_latest_news.php");
         ?>
 
     </div>
+
 
 
 </div>
